@@ -30,6 +30,9 @@ import java.nio.ByteBuffer;
  *
  *    0 <= mark <= position <= limit <= capacity
  *
+ *  四、直接缓冲区与非直接缓冲区
+ *      非直接缓冲区：通过allocate() 方法分配缓冲区，将缓冲区建立在JVM内存中
+ *      直接缓冲区：通过allocateDirect() 方法分配直接缓冲区，将缓冲区直接建立在计算机物理内存中，可以提高效率
  *
  * @author lzc
  * @create 2020/09/24 下午 8:26
@@ -104,6 +107,16 @@ public class BufferTest {
         System.out.println("读的数据：" + buf.position());
     }
 
+    /*
+    直接缓冲区
+     */
+    @Test
+    public void test3() {
+        // 分配直接缓冲区
+        ByteBuffer b = ByteBuffer.allocateDirect(1024);
+        // 判断是否是直接缓冲区
+        System.out.println(b.isDirect());
+    }
 
     /*
     显示缓冲区属性
